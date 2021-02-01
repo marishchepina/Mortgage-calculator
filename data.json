@@ -1,0 +1,32 @@
+{
+    "Banks": [
+        {
+            "bankName": "Bank1",
+            "interestRate": "7",
+            "loanTerm": "12",
+            "maximumLoan": "100000",
+            "minimumDownPayment": "10000"
+        },
+        {
+            "bankName": "Bank2",
+            "interestRate": "8",
+            "loanTerm": "12",
+            "maximumLoan": "100000",
+            "minimumDownPayment": "20000"
+        },
+        {
+            "bankName": "Bank3",
+            "interestRate": "7",
+            "loanTerm": "12",
+            "maximumLoan": "100000",
+            "minimumDownPayment": "10000"
+        },
+        {
+            "bankName": "Bank4",
+            "interestRate": "9",
+            "loanTerm": "12",
+            "maximumLoan": "100000",
+            "minimumDownPayment": "10000"
+        }
+    ]
+}

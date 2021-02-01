@@ -181,17 +181,40 @@ button {
     opacity: 1; } }
 /*----------------------MEDIA-----------------------------*/
 @media all and (max-width: 640px) {
-  .nav {
-    display: none; }
+  .nav__link {
+    width: 0;
+    font-size: 0;
+    height: 0; }
+    .nav__link::before {
+      display: block !important;
+      content: "2";
+      position: absolute;
+      right: 0px;
+      bottom: 6px;
+      color: #fff;
+      line-height: 40px;
+      font-size: 25px;
+      text-align: center;
+      width: 40px;
+      height: 40px;
+      background: #283547; }
+    .nav__link:first-child::before {
+      content: "1";
+      bottom: 52px; }
+
+  .nav__link--active::before {
+    background: #0daa3c; }
 
   .banks {
     width: 100%;
     display: table; }
+    .banks__left {
+      width: 100%; }
     .banks__right {
       display: none; }
     .banks__list {
       min-width: 100%; }
-      .banks__listItem {
-        border: 0; } }
+    .banks__listItem {
+      border: 0; } }
 
 /*# sourceMappingURL=style.css.map */

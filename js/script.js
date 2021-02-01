@@ -44,17 +44,17 @@ const createAddBankBlock = () => {
   addBut.innerText = 'Add new';
   addBut.id = "js-addBut";
   banksListItem.classList.add('banks__listItem');
-  bankList.appendChild(addBut);
   bankList.appendChild(banksListItem);
+  bankList.appendChild(addBut);
   addBut.addEventListener('click', function (e) {
     let target = e.target;
     target.classList.add('hide');
-    generateAddForm(bankEmptyFormFields, 7, banksListItem);
+    generateAddForm(bankEmptyFormFields, banksListItem);
   })
 }
 
 
-const generateAddForm = (bank, i, banksListItem) => {
+const generateAddForm = (bank, banksListItem) => {
   console.log(banksListItem);
   let banksListItemForm = document.createElement('form');
   let bankName = document.createElement('input');
@@ -87,15 +87,64 @@ const generateAddForm = (bank, i, banksListItem) => {
       "minimumDownPayment": minimumDownPayment.value.toString()
     }
     newId++;
-    userRef.set(newBank).then(() => {
-      banksListItemForm.classList.add('hide');
-      createBankElement(newBank, newId);
-      let addBut = document.getElementById('js-addBut');
-      addBut.classList.remove('hide');
-      console.log("Success, bank added to list");
-    }).catch(() => {
-      console.log("Error, bank not added to list");
-    });
+    userRef.set(newBank)
+      .then(() => {
+        banksListItemForm.classList.add('hide');
+        createBankElement(newBank, newId);
+        let addBut = document.getElementById('js-addBut');
+        addBut.classList.remove('hide');
+        console.log("Success, bank added to list");
+      })
+      .catch(() => {
+        console.log("Error, bank not added to list");
+      });
+  })
+}
+
+
+const generateEditForm = (bank, i, banksListItem) => {
+  console.log(banksListItem);
+  let banksListItemForm = document.createElement('form');
+  let bankName = document.createElement('input');
+  let interestRate = document.createElement('input');
+  let loanTerm = document.createElement('input');
+  let maximumLoan = document.createElement('input');
+  let minimumDownPayment = document.createElement('input');
+  let saveBut = document.createElement('button');
+  bankName.placeholder = `Bank name: ${bank.bankName}`;
+  interestRate.placeholder = `Interest rate: ${bank.interestRate}`;
+  loanTerm.placeholder = `Loan term: ${bank.loanTerm}`;
+  maximumLoan.placeholder = `Maximum loan: ${bank.maximumLoan}`;
+  minimumDownPayment.placeholder = `Minimum down payment: ${bank.minimumDownPayment}`;
+  saveBut.innerText = 'Save';
+  banksListItemForm.classList.add('banks__form');
+  banksListItem.appendChild(banksListItemForm);
+  banksListItemForm.appendChild(bankName);
+  banksListItemForm.appendChild(interestRate);
+  banksListItemForm.appendChild(loanTerm);
+  banksListItemForm.appendChild(maximumLoan);
+  banksListItemForm.appendChild(minimumDownPayment);
+  banksListItemForm.appendChild(saveBut);
+  saveBut.addEventListener('click', function (e) {
+    e.preventDefault();
+    let userRef = database.ref(`Banks/3`);
+    let editedBank = {
+      "bankName": 'updated',
+      "interestRate": 'updated',
+      "loanTerm": 'updated',
+      "maximumLoan": 'updated',
+      "minimumDownPayment": 'updated'
+    }
+    userRef.update(editedBank)
+      .then(() => {
+        banksListItemForm.classList.add('hide');
+        let temp = banksListItem.parentElement;
+        temp.childNodes.classList.remove('banks__but--active')
+        console.log("Success, bank attributes was changed");
+      })
+      .catch(() => {
+        console.log("Error, bank attributes was not changed");
+      });
   })
 }
 
@@ -132,10 +181,11 @@ const createBankElement = (bank, i) => {
     userRef.remove()
   });
   bankEditDiv.addEventListener('click', function (e) {
+    e.preventDefault();
     this.classList.add('banks__but--active')
     let banksListItem = this.parentElement;
     if (banksListItem.childNodes.length === 3) {
-      generateAddEditForm(bank, i, banksListItem);
+      generateEditForm(bank, i, banksListItem);
     }
   });
 };

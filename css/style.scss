@@ -219,20 +219,46 @@ button {
 }
 /*----------------------MEDIA-----------------------------*/
 @media all and (max-width: 640px) {
-    .nav {
-        display: none;
+    .nav__link {
+        width: 0;
+        font-size: 0;
+        height: 0;
+        &::before {
+            display: block !important;
+            content: "2";
+            position: absolute;
+            right: 0px;
+            bottom: 6px;
+            color: #fff;
+            line-height: 40px;
+            font-size: 25px;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            background: #283547;
+        }
+        &:first-child::before {
+            content: "1";
+            bottom: 52px;
+        }
+    }
+    .nav__link--active::before {
+        background: #0daa3c;
     }
     .banks {
         width: 100%;
         display: table;
+        &__left {
+            width: 100%;
+        }
         &__right {
             display: none;
         }
         &__list {
             min-width: 100%;
-            &Item {
-                border: 0;
-            }
+        }
+        &__listItem {
+            border: 0;
         }
     }
 }

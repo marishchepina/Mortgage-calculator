@@ -1,6 +1,8 @@
 $green: #0daa3c;
+$lightgreen: #65b965;
 $darkblue: #283547;
 $grey: #e0e4d9;
+$lightgrey: #a8b2b3;
 
 * {
     margin: 0;
@@ -121,6 +123,7 @@ button {
         width: 100%;
         background: url(../img/money.jpg) center 4px no-repeat;
         background-size: cover;
+        border-left: 8px solid #fff;
     }
     &__list {
         display: table-cell;
@@ -137,10 +140,10 @@ button {
             position: relative;
             display: flex;
             justify-content: space-between;
-            border-right: 8px solid #fff;
             flex-wrap: wrap;
             line-height: 40px;
-            &__name {
+            &__name,
+            &__info {
                 width: 100%;
                 background: $grey;
                 padding-left: 2rem;
@@ -207,6 +210,64 @@ button {
         }
     }
 }
+/*-------------------------- CALCULATOR-------------------------*/
+.calculatorWrap {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+.listItem__descr {
+    border: 0;
+    cursor: pointer;
+    width: 100%;
+    background: $grey;
+    padding-left: 2rem;
+    &:hover {
+        background: $lightgreen;
+    }
+    & > div {
+        display: none;
+        border-top: 1px solid #fff;
+        margin-right: 20px;
+        background: $lightgreen;
+    }
+    &::before {
+        content: "»";
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: 10px;
+        font-weight: normal;
+        top: 0px;
+        font-size: 3.4rem;
+        color: $darkblue;
+        &:hover {
+            background-color: $lightgreen;
+        }
+    }
+    &--opened {
+        background-color: $lightgreen;
+        & > div {
+            display: block;
+        }
+    }
+    &:hover,
+    &--opened,
+    &:hover::before {
+        color: #fff;
+    }
+    &--opened::before {
+        color: #fff;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=-3);
+        -o-transform: rotate(90deg);
+        right: 6px;
+        top: 15px;
+    }
+}
+/*-------------------------- Animation-------------------------*/
 @-webkit-keyframes zoomIn {
     from {
         opacity: 0;

@@ -87,17 +87,15 @@ const generateAddForm = (bank, banksListItem) => {
       "minimumDownPayment": minimumDownPayment.value.toString()
     }
     newId++;
-    userRef.set(newBank)
-      .then(() => {
-        banksListItemForm.classList.add('hide');
-        createBankElement(newBank, newId);
-        let addBut = document.getElementById('js-addBut');
-        addBut.classList.remove('hide');
-        console.log("Success, bank added to list");
-      })
-      .catch(() => {
-        console.log("Error, bank not added to list");
-      });
+    userRef.set(newBank).then(() => {
+      banksListItemForm.classList.add('hide');
+      createBankElement(newBank, newId);
+      let addBut = document.getElementById('js-addBut');
+      addBut.classList.remove('hide');
+      console.log("Success, bank added to list");
+    }).catch(() => {
+      console.log("Error, bank not added to list");
+    });
   })
 }
 
@@ -129,7 +127,7 @@ const generateEditForm = (bank, i, banksListItem) => {
     e.preventDefault();
     let userRef = database.ref(`Banks/3`);
     let editedBank = {
-      "bankName": 'updated',
+      "bankName": bankName.value.toString(),
       "interestRate": 'updated',
       "loanTerm": 'updated',
       "maximumLoan": 'updated',

@@ -30,14 +30,16 @@
         </header>
         <section class="banks">
             <div class="banks__left">
-                <div id="js-bank" class="banks__list">
+                <div id="js-bankInfo" class="banks__list">
                     <!---BANKS LIST--->
                 </div>
             </div>
-            <div class="banks__right">
-                <div id="js-calculator" class="calculator">
-
-                </div>
+            <div class="banks__right calculatorWrap">
+                <form id="js-calculator" class="calculator">
+                    <input type="text" placeholder="Initial loan" />
+                    <input type="text" placeholder="Down payment" />
+                    <div class="calculator__bankChoiser">Choise bank</div>
+                </form>
             </div>
         </section>
         <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>

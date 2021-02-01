@@ -69,6 +69,16 @@ button {
     display: none;
 }
 
+input {
+    border: none;
+    height: 40px;
+    border-bottom: 2px solid $grey;
+    width: 100%;
+    background: transparent;
+    color: $green;
+    font: 1.6rem/2rem "Open Sans", sans-serif;
+}
+
 /*-----------------------------------------logo---------------------------------*/
 .logo {
     display: flex;
@@ -200,14 +210,6 @@ button {
         padding: 2rem;
         animation-name: zoomIn;
         animation-duration: 1s;
-        & input {
-            border: none;
-            border-bottom: 2px solid $grey;
-            width: 100%;
-            background: transparent;
-            color: $green;
-            font: 1.6rem/2rem "Open Sans", sans-serif;
-        }
     }
 }
 /*-------------------------- CALCULATOR-------------------------*/
@@ -215,6 +217,38 @@ button {
     width: 100%;
     height: 100%;
     background: #fff;
+    vertical-align: top;
+}
+.calculator {
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 400px;
+    margin: 4px;
+    padding-bottom: 20px;
+    & input {
+        margin: 15px 5% 0 5%;
+        width: 90%;
+    }
+    &__title {
+        color: #fff;
+        font-weight: normal;
+        padding: 10px;
+        font-size: 2.4rem;
+        background-color: $lightgreen;
+    }
+    &__res {
+        padding: 15px;
+        text-align: center;
+        margin: 25px 5% 0 5%;
+        width: 90%;
+        background-color: $grey;
+    }
+    & button {
+        float: none;
+        display: block;
+        font-size: 20px;
+        margin: 40px auto 0 auto;
+    }
 }
 .listItem__descr {
     border: 0;

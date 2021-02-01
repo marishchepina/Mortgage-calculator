@@ -1,7 +1,9 @@
 'use strict';
 const BASE_URL = 'https://mortgage-calculator-a37be-default-rtdb.europe-west1.firebasedatabase.app';
 let bankList = document.getElementById('js-bankInfo');
-let bankInfoRight = document.getElementById('js-bankInfo--right');
+let calculateForm = document.getElementById('js-calculator');
+let calculateFormBank = document.getElementById('js-calculatorBank');
+let calculatedRes = document.getElementById('js-calculatedRes');
 let database = firebase.database();
 let newId;
 
@@ -55,11 +57,18 @@ const createBankElement = (bank, i) => {
     bankInfoWrap.appendChild(maximumLoan);
     bankInfoWrap.appendChild(minimumDownPayment);
     bankName.addEventListener('click', function (e) {
-        this.classList.toggle('listItem__descr--opened')
+        let parent = this.parentNode;
+        let siblings = parent.parentNode.querySelectorAll('div');
+        siblings.forEach(el => el.classList.remove('listItem__descr--opened'));
+        this.classList.toggle('listItem__descr--opened');
+        calculate(bank);
     });
 };
 
-
+const calculate = (bank) => {
+    console.log(bank)
+    calculateFormBank.innerText = bank.bankName;
+}
 
 
 getBanks();

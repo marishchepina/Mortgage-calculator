@@ -87,15 +87,17 @@ const generateAddForm = (bank, banksListItem) => {
       "minimumDownPayment": minimumDownPayment.value.toString()
     }
     newId++;
-    userRef.set(newBank).then(() => {
-      banksListItemForm.classList.add('hide');
-      createBankElement(newBank, newId);
-      let addBut = document.getElementById('js-addBut');
-      addBut.classList.remove('hide');
-      console.log("Success, bank added to list");
-    }).catch(() => {
-      console.log("Error, bank not added to list");
-    });
+    userRef.set(newBank)
+      .then(() => {
+        banksListItemForm.classList.add('hide');
+        createBankElement(newBank, newId);
+        let addBut = document.getElementById('js-addBut');
+        addBut.classList.remove('hide');
+        console.log("Success, bank added to list");
+      })
+      .catch(() => {
+        console.log("Error, bank not added to list");
+      });
   })
 }
 
@@ -124,20 +126,25 @@ const generateEditForm = (bank, i, banksListItem) => {
   banksListItemForm.appendChild(minimumDownPayment);
   banksListItemForm.appendChild(saveBut);
   saveBut.addEventListener('click', function (e) {
-    e.preventDefault();
-    let userRef = database.ref(`Banks/3`);
+    let userRef = database.ref(`Banks/${i}`);
     let editedBank = {
       "bankName": bankName.value.toString(),
-      "interestRate": 'updated',
-      "loanTerm": 'updated',
-      "maximumLoan": 'updated',
-      "minimumDownPayment": 'updated'
+      "interestRate": interestRate.value.toString(),
+      "loanTerm": loanTerm.value.toString(),
+      "maximumLoan": maximumLoan.value.toString(),
+      "minimumDownPayment": minimumDownPayment.value.toString()
     }
     userRef.update(editedBank)
       .then(() => {
         banksListItemForm.classList.add('hide');
-        let temp = banksListItem.parentElement;
-        temp.childNodes.classList.remove('banks__but--active')
+        let childEelements = banksListItem.childNodes;
+        childEelements.forEach(element => {
+          element.classList.remove('banks__but--active')
+        });
+        while (bankList.firstChild) {
+          bankList.removeChild(bankList.firstChild);
+        }
+        getBanks();
         console.log("Success, bank attributes was changed");
       })
       .catch(() => {
@@ -179,10 +186,9 @@ const createBankElement = (bank, i) => {
     userRef.remove()
   });
   bankEditDiv.addEventListener('click', function (e) {
-    e.preventDefault();
     this.classList.add('banks__but--active')
     let banksListItem = this.parentElement;
-    if (banksListItem.childNodes.length === 3) {
+    if (!banksListItem.querySelector('.banks__form')) {
       generateEditForm(bank, i, banksListItem);
     }
   });

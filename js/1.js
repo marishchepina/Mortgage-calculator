@@ -4,8 +4,9 @@ let bankList = document.getElementById('js-bankInfo');
 let calculateForm = document.getElementById('js-calculator');
 let calculateFormBank = document.getElementById('js-calculatorBank');
 let calculatedRes = document.getElementById('js-calculatedRes');
-let database = firebase.database();
-let newId;
+let calculatedBut = document.getElementById('js-calculateBut');
+let initLoan = document.getElementById('js-initLoan');
+let downPayment = document.getElementById('js-downPayment');
 
 
 let config = {
@@ -61,15 +62,19 @@ const createBankElement = (bank, i) => {
         let siblings = parent.parentNode.querySelectorAll('div');
         siblings.forEach(el => el.classList.remove('listItem__descr--opened'));
         this.classList.toggle('listItem__descr--opened');
-        calculate(bank);
+        bankChoise(bank);
     });
 };
 
-const calculate = (bank) => {
+const bankChoise = (bank) => {
     console.log(bank)
     calculateFormBank.innerText = bank.bankName;
 }
 
+calculatedBut.addEventListener('click', function (e) {
+    e.preventDefault();
+
+})
 
 getBanks();
 

@@ -4,7 +4,7 @@ let bankList = document.getElementById('js-bankInfo');
 let calculateForm = document.getElementById('js-calculator');
 let calculateFormBank = document.getElementById('js-calculatorBank');
 let calculatedRes = document.getElementById('js-calculatedRes');
-let calculatedBut = document.getElementById('js-calculateBut');
+let calculateBut = document.getElementById('js-calculateBut');
 let initLoan = document.getElementById('js-initLoan');
 let downPayment = document.getElementById('js-downPayment');
 
@@ -34,7 +34,6 @@ const getBanks = async () => {
 
 
 const createBankElement = (bank, i) => {
-    console.log(i)
     if (bank == null || i == null) return;
     let bankItem = document.createElement('div');
     let bankName = document.createElement('div');
@@ -62,19 +61,18 @@ const createBankElement = (bank, i) => {
         let siblings = parent.parentNode.querySelectorAll('div');
         siblings.forEach(el => el.classList.remove('listItem__descr--opened'));
         this.classList.toggle('listItem__descr--opened');
-        bankChoise(bank);
+        calculateFunk(bank);
     });
 };
 
-const bankChoise = (bank) => {
-    console.log(bank)
+
+const calculateFunk = (bank) => {
     calculateFormBank.innerText = bank.bankName;
+    calculateBut.addEventListener('click', function (e) {
+        /*The night is too short*/
+    })
 }
 
-calculatedBut.addEventListener('click', function (e) {
-    e.preventDefault();
-
-})
 
 getBanks();
 

@@ -185,7 +185,7 @@ input {
 .calculator {
   border: 1px solid #ccc;
   width: 100%;
-  max-width: 400px;
+  max-width: 340px;
   margin: 4px;
   padding-bottom: 20px; }
   .calculator input {

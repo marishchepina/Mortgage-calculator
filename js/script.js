@@ -55,7 +55,6 @@ const createAddBankBlock = () => {
 
 
 const generateAddForm = (bank, banksListItem) => {
-  console.log(banksListItem);
   let banksListItemForm = document.createElement('form');
   let bankName = document.createElement('input');
   let interestRate = document.createElement('input');
@@ -103,7 +102,6 @@ const generateAddForm = (bank, banksListItem) => {
 
 
 const generateEditForm = (bank, i, banksListItem) => {
-  console.log(banksListItem);
   let banksListItemForm = document.createElement('form');
   let bankName = document.createElement('input');
   let interestRate = document.createElement('input');
@@ -155,7 +153,6 @@ const generateEditForm = (bank, i, banksListItem) => {
 
 
 const createBankElement = (bank, i) => {
-  console.log(i)
   if (bank == null || i == null) return;
   let bankItem = document.createElement('div');
   let bankName = document.createElement('div');
